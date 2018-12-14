@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import App from '../src/components/App';
+import App from './components/App';
+import 'semantic-ui-css/semantic.min.css';
 
 const Root = () => (
     <Router>
         <Switch>
-            <route exact path="/" component={App}/>
-            <route path="/login" component={Login}/>
-            <route path="/register" component={Register}/>
+            <Route exact path="/" component={App}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/register" component={Register}/>
         </Switch>
     </Router>
 );
