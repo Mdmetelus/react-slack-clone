@@ -44,7 +44,7 @@ state = {
                 <Icon name="puzzle piece" color="orange" />
                 Register for DevChat
             </Header>
-            <Form size="large" onSubmit={this.handleChange} >
+            <Form size="large" onSubmit={this.handleSubmit} >
                 <Segment stacked>
                 <Form.Input fluid name="username" icon="user" iconPosition="left" 
                 placeholder="Username" onChange={this.handleChange} value={username} type="text" />
