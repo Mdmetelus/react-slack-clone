@@ -21,6 +21,15 @@ state = {
 
     handleSubmit = event => {
         event.preventDefault();
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(this.state.email,this.state.password)
+            .then(createUser =>{
+                console.log(createUser);
+            })
+            .catch(err => {
+                console.error(err);
+            })
 
     }
 
