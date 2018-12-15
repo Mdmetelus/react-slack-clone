@@ -9,17 +9,49 @@ state = {
     email: '',
     password: '',
     passwordConfermation: '',
-}
+    errors: []
+};
 
 
 
+    isFormValid = () => {
+        let errors = [];
+        let error;
 
+
+        if(this.isFormEmpty) {
+            //throw error
+            error= { mesage: 'Fill in all fields'};
+            this.setState({ errors: errors.concat(error)})
+            return false;
+        } else if (this.isPasswordValid()) {
+            //throw error
+        } else {
+            //form Valid
+            return true;
+        }
+    }
+
+    isFormEmpty = ({ username, email, password, passwordConfermation }) =>{
+        return !username.legnth || !email.legnth || !password.legnth || !passwordConfermation.legnth;
+    }
+
+    isPasswordValid =({password, passwordConfermation}) => {
+        if (password.legnth < 6 ||passwordConfermation.legnth < 6 ) {
+            return false;
+        } else if (password !== passwordConfermation) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value});
     };
 
     handleSubmit = event => {
+        if(this.formValid) {}
         event.preventDefault();
         firebase
             .auth()
