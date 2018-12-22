@@ -24,8 +24,11 @@ state = {
             error= { mesage: 'Fill in all fields'};
             this.setState({ errors: errors.concat(error)})
             return false;
-        } else if (this.isPasswordValid()) {
+        } else if (this.isPasswordValid(this.state)) {
             //throw error
+            error = { message: 'Password is invalid'};
+            this.setState({ error: errors.concat(error)});
+            return false;
         } else {
             //form Valid
             return true;
@@ -45,6 +48,8 @@ state = {
             return true;
         }
     }
+
+    displayErrors = errors => errors.map((error, i ) => <p key={i} >{error.message}</p>);
 
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value});
@@ -68,7 +73,7 @@ state = {
 
 
     render() {
-        const {username, email, password, passwordConfermation } = this.state
+        const {username, email, password, passwordConfermation, } = this.state
   return (
         <Grid textAlign="center" verticalAlign="middle" className="app" >
         <Grid.Column style={{ maxWidth: 450}}>
@@ -98,6 +103,12 @@ state = {
 
                 </Segment>
             </Form>
+            {this.state.errors.length > 0 && (
+                <message error>
+                    <h3>Error</h3>
+                    {this.displayErrors(this.state.errors)}
+                </message>
+            )}
         </Grid.Column>
             
         </Grid>
